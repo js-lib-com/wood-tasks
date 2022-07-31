@@ -1,6 +1,6 @@
 package com.jslib.wood.tasks;
 
-import static com.jslib.tools.AbstractToolProcess.buildCommand;
+import static com.jslib.tools.ToolProcess.buildCommand;
 import static java.lang.String.format;
 
 import java.io.IOException;
@@ -17,7 +17,6 @@ import com.jslib.dospi.TaskAbortException;
 import com.jslib.tools.IResultParser;
 import com.jslib.tools.imagick.Color;
 import com.jslib.tools.imagick.ConvertProcess;
-import com.jslib.tools.imagick.ImageMagickProcess;
 
 import js.json.Json;
 import js.log.Log;
@@ -33,7 +32,7 @@ public class CreateIcons extends WoodTask {
 	private final IConsole console;
 	private final IFiles files;
 	private final Json json;
-	private final ImageMagickProcess convert;
+	private final ConvertProcess convert;
 
 	@Inject
 	public CreateIcons(IShell shell, IFiles files) {
