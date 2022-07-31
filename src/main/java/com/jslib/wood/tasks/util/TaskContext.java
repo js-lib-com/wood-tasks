@@ -28,7 +28,7 @@ import js.util.Strings;
 public class TaskContext {
 	private static final Log log = LogFactory.getLog(TaskContext.class);
 
-	private static final String USER_PROPERTIES_FILE = ".do.properties";
+	private static final String USER_PROPERTIES_FILE = ".wood.properties";
 	private static final String PROJECT_PROPERTIES_FILE = ".project.properties";
 	private static final String PROJECT_DESCRIPTOR_FILE = "project.xml";
 
