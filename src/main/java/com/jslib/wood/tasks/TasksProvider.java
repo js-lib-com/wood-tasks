@@ -6,14 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.dospi.ITask;
 import com.jslib.dospi.ITasksProvider;
 import com.jslib.dospi.TaskReference;
+import com.jslib.util.Classes;
 import com.jslib.wood.tasks.util.CompoUtils;
-
-import js.log.Log;
-import js.log.LogFactory;
-import js.util.Classes;
 
 public class TasksProvider implements ITasksProvider {
 	private static final Log log = LogFactory.getLog(TasksProvider.class);

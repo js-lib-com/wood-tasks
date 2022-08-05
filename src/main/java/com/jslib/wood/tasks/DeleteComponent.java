@@ -7,15 +7,14 @@ import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.docore.IFiles;
 import com.jslib.dospi.IParameters;
 import com.jslib.dospi.IShell;
 import com.jslib.dospi.ReturnCode;
 import com.jslib.dospi.TaskAbortException;
 import com.jslib.dospi.UserCancelException;
-
-import js.log.Log;
-import js.log.LogFactory;
 
 public class DeleteComponent extends WoodTask {
 	private static final Log log = LogFactory.getLog(DeleteComponent.class);

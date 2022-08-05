@@ -8,15 +8,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.docore.IFiles;
 import com.jslib.dospi.IParameters;
 import com.jslib.dospi.ReturnCode;
+import com.jslib.util.Files;
+import com.jslib.util.TextReplace;
 import com.jslib.wood.tasks.util.VariableReference;
-
-import js.log.Log;
-import js.log.LogFactory;
-import js.util.Files;
-import js.util.TextReplace;
 
 public class RenameVariable extends WoodTask {
 	private static final Log log = LogFactory.getLog(RenameVariable.class);

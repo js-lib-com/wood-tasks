@@ -13,17 +13,16 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.xml.sax.SAXException;
 
+import com.jslib.api.dom.Document;
+import com.jslib.api.dom.DocumentBuilder;
+import com.jslib.api.dom.Element;
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
+import com.jslib.converter.Converter;
+import com.jslib.converter.ConverterRegistry;
 import com.jslib.dospi.TaskAbortException;
-
-import js.converter.Converter;
-import js.converter.ConverterRegistry;
-import js.dom.Document;
-import js.dom.DocumentBuilder;
-import js.dom.Element;
-import js.log.Log;
-import js.log.LogFactory;
-import js.util.Classes;
-import js.util.Strings;
+import com.jslib.util.Classes;
+import com.jslib.util.Strings;
 
 public class TaskContext {
 	private static final Log log = LogFactory.getLog(TaskContext.class);

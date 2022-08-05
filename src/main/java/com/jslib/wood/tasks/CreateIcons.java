@@ -8,6 +8,9 @@ import java.nio.file.Path;
 
 import javax.inject.Inject;
 
+import com.jslib.api.json.Json;
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.docore.IFiles;
 import com.jslib.dospi.IConsole;
 import com.jslib.dospi.IParameters;
@@ -17,12 +20,8 @@ import com.jslib.dospi.TaskAbortException;
 import com.jslib.tools.IResultParser;
 import com.jslib.tools.imagick.Color;
 import com.jslib.tools.imagick.ConvertProcess;
-
-import js.json.Json;
-import js.log.Log;
-import js.log.LogFactory;
-import js.util.Classes;
-import js.util.Strings;
+import com.jslib.util.Classes;
+import com.jslib.util.Strings;
 
 public class CreateIcons extends WoodTask {
 	private static final Log log = LogFactory.getLog(CreateIcons.class);

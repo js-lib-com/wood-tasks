@@ -3,8 +3,8 @@ package com.jslib.wood.tasks.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import js.converter.Converter;
-import js.util.Strings;
+import com.jslib.converter.Converter;
+import com.jslib.util.Strings;
 
 public class VariableReference implements Converter {
 	private static final Pattern PATTERN = Pattern.compile("^\\@([a-z]+)\\/([a-z\\-]+)$");

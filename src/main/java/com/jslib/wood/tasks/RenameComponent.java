@@ -1,20 +1,19 @@
 package com.jslib.wood.tasks;
 
-import static js.util.Strings.concat;
+import static com.jslib.util.Strings.concat;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
 import javax.inject.Inject;
 
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.docore.IFiles;
 import com.jslib.dospi.IParameters;
 import com.jslib.dospi.ReturnCode;
 import com.jslib.dospi.TaskAbortException;
-
-import js.log.Log;
-import js.log.LogFactory;
-import js.util.TextReplace;
+import com.jslib.util.TextReplace;
 
 public class RenameComponent extends WoodTask {
 	private static final Log log = LogFactory.getLog(RenameComponent.class);

@@ -2,13 +2,12 @@ package com.jslib.wood.tasks;
 
 import javax.inject.Inject;
 
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.dospi.IParameters;
 import com.jslib.dospi.IPrintout;
 import com.jslib.dospi.IShell;
 import com.jslib.dospi.ReturnCode;
-
-import js.log.Log;
-import js.log.LogFactory;
 
 public class ListProperties extends WoodTask {
 	private static final Log log = LogFactory.getLog(ListProperties.class);

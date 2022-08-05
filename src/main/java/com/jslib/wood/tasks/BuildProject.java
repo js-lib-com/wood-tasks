@@ -4,15 +4,14 @@ import java.nio.file.Path;
 
 import javax.inject.Inject;
 
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.docore.IFiles;
 import com.jslib.dospi.IParameters;
 import com.jslib.dospi.ReturnCode;
 import com.jslib.dospi.TaskAbortException;
-
-import js.log.Log;
-import js.log.LogFactory;
-import js.wood.build.Builder;
-import js.wood.build.BuilderConfig;
+import com.jslib.wood.build.Builder;
+import com.jslib.wood.build.BuilderConfig;
 
 public class BuildProject extends WoodTask {
 	private static final Log log = LogFactory.getLog(BuildProject.class);

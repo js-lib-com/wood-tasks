@@ -1,7 +1,7 @@
 package com.jslib.wood.tasks;
 
-import static java.lang.String.format;
-import static js.util.Strings.concat;
+import static com.jslib.util.Strings.concat;
+import static com.jslib.util.Strings.format;
 
 import java.io.IOException;
 import java.net.URI;
@@ -19,6 +19,11 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.xml.sax.SAXException;
 
+import com.jslib.api.dom.Document;
+import com.jslib.api.dom.DocumentBuilder;
+import com.jslib.api.dom.Element;
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.docore.IFiles;
 import com.jslib.docore.IHttpRequest;
 import com.jslib.docore.repo.RepositoryCoordinates;
@@ -27,17 +32,11 @@ import com.jslib.dospi.IParameters;
 import com.jslib.dospi.IShell;
 import com.jslib.dospi.ReturnCode;
 import com.jslib.dospi.TaskAbortException;
-
-import js.dom.Document;
-import js.dom.DocumentBuilder;
-import js.dom.Element;
-import js.log.Log;
-import js.log.LogFactory;
-import js.util.Classes;
-import js.util.Files;
-import js.util.Strings;
-import js.wood.WOOD;
-import js.wood.WoodException;
+import com.jslib.util.Classes;
+import com.jslib.util.Files;
+import com.jslib.util.Strings;
+import com.jslib.wood.WOOD;
+import com.jslib.wood.WoodException;
 
 public class ImportComponent extends WoodTask {
 	private static final Log log = LogFactory.getLog(ImportComponent.class);

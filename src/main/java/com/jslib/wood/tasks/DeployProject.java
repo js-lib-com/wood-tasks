@@ -11,19 +11,19 @@ import java.util.TreeMap;
 
 import javax.inject.Inject;
 
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.docore.IFiles;
 import com.jslib.dospi.IParameters;
 import com.jslib.dospi.ReturnCode;
 import com.jslib.dospi.TaskAbortException;
+import com.jslib.io.FilesIterator;
+import com.jslib.io.FilesOutputStream;
+import com.jslib.io.StreamHandler;
+import com.jslib.lang.GType;
+import com.jslib.util.Files;
 
-import js.io.FilesIterator;
-import js.io.FilesOutputStream;
-import js.io.StreamHandler;
-import js.lang.GType;
-import js.log.Log;
-import js.log.LogFactory;
 import js.net.client.HttpRmiClient;
-import js.util.Files;
 
 public class DeployProject extends WoodTask {
 	private static final Log log = LogFactory.getLog(DeployProject.class);

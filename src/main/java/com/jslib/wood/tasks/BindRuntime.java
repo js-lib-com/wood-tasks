@@ -4,17 +4,16 @@ import java.nio.file.Path;
 
 import javax.inject.Inject;
 
+import com.jslib.api.dom.Document;
+import com.jslib.api.dom.DocumentBuilder;
+import com.jslib.api.dom.Element;
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.docore.IFiles;
 import com.jslib.dospi.IParameters;
 import com.jslib.dospi.ReturnCode;
 import com.jslib.dospi.TaskAbortException;
-
-import js.dom.Document;
-import js.dom.DocumentBuilder;
-import js.dom.Element;
-import js.log.Log;
-import js.log.LogFactory;
-import js.util.Classes;
+import com.jslib.util.Classes;
 
 public class BindRuntime extends WoodTask {
 	private static final Log log = LogFactory.getLog(BindRuntime.class);

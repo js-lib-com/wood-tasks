@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.docore.IApacheIndex;
 import com.jslib.docore.IFiles;
 import com.jslib.docore.IHttpFile;
@@ -17,10 +19,7 @@ import com.jslib.dospi.IParameters;
 import com.jslib.dospi.IShell;
 import com.jslib.dospi.ReturnCode;
 import com.jslib.dospi.TaskAbortException;
-
-import js.format.FileSize;
-import js.log.Log;
-import js.log.LogFactory;
+import com.jslib.format.FileSize;
 
 public class UpdateRuntime extends WoodTask {
 	private static final Log log = LogFactory.getLog(UpdateRuntime.class);

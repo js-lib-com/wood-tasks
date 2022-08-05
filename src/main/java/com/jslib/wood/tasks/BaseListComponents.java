@@ -10,16 +10,15 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.docore.IFiles;
 import com.jslib.dospi.Flags;
 import com.jslib.dospi.IParameters;
 import com.jslib.dospi.IPrintout;
 import com.jslib.dospi.IShell;
 import com.jslib.dospi.ReturnCode;
-
-import js.format.FileSize;
-import js.log.Log;
-import js.log.LogFactory;
+import com.jslib.format.FileSize;
 
 public abstract class BaseListComponents extends WoodTask {
 	private static final Log log = LogFactory.getLog(BaseListComponents.class);

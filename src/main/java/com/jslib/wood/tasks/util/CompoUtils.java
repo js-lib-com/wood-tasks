@@ -9,11 +9,10 @@ import java.nio.file.SimpleFileVisitor;
 
 import javax.inject.Inject;
 
+import com.jslib.api.log.Log;
+import com.jslib.api.log.LogFactory;
 import com.jslib.docore.IFiles;
 import com.jslib.dospi.TaskAbortException;
-
-import js.log.Log;
-import js.log.LogFactory;
 
 public class CompoUtils {
 	private static final Log log = LogFactory.getLog(CompoUtils.class);
