@@ -21,9 +21,8 @@ import com.jslib.io.FilesIterator;
 import com.jslib.io.FilesOutputStream;
 import com.jslib.io.StreamHandler;
 import com.jslib.lang.GType;
+import com.jslib.net.client.HttpRmiClient;
 import com.jslib.util.Files;
-
-import js.net.client.HttpRmiClient;
 
 public class DeployProject extends WoodTask {
 	private static final Log log = LogFactory.getLog(DeployProject.class);
