@@ -9,10 +9,6 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Properties;
 
-import javax.xml.xpath.XPathExpressionException;
-
-import org.xml.sax.SAXException;
-
 import com.jslib.api.dom.Document;
 import com.jslib.api.dom.DocumentBuilder;
 import com.jslib.api.dom.Element;
@@ -23,6 +19,7 @@ import com.jslib.converter.ConverterRegistry;
 import com.jslib.dospi.TaskAbortException;
 import com.jslib.util.Classes;
 import com.jslib.util.Strings;
+import com.jslib.wood.CT;
 
 public class TaskContext {
 	private static final Log log = LogFactory.getLog(TaskContext.class);
@@ -46,18 +43,21 @@ public class TaskContext {
 				for (Element element : doc.findByXPath("//*[normalize-space(text())]")) {
 					properties.put(key(element), element.getText());
 				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SAXException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (XPathExpressionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (Exception e) {
+				log.error(e);
 			}
 		}
-
+		
+		if(!properties.containsKey("asset.dir")) {
+			properties.put("asset.dir", CT.DEF_ASSET_DIR);
+		}
+		if(!properties.containsKey("theme.dir")) {
+			properties.put("theme.dir", CT.DEF_THEME_DIR);
+		}
+		if(!properties.containsKey("build.dir")) {
+			properties.put("build.dir", CT.DEF_BUILD_DIR);
+		}
+		
 		Path userDir = Paths.get(System.getProperty("user.home"));
 		if (Files.exists(userDir)) {
 			Path userPropertiesFile = userDir.resolve(PROPERTIES_FILE);
@@ -65,8 +65,7 @@ public class TaskContext {
 				try (Reader reader = Files.newBufferedReader(userPropertiesFile)) {
 					properties.load(reader);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error(e);
 				}
 			}
 		}
@@ -76,8 +75,7 @@ public class TaskContext {
 			try (Reader reader = Files.newBufferedReader(projectPropertiesFile)) {
 				properties.load(reader);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error(e);
 			}
 		}
 	}
