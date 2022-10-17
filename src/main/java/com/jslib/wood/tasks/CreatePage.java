@@ -70,7 +70,7 @@ public class CreatePage extends WoodTask {
 		String templatePath = parameters.get("template-path");
 		log.info("Create page %s based on %s.", pagePath, templatePath);
 
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 		Path compoDir = projectDir.resolve(pagePath);
 		if (files.exists(compoDir)) {
 			throw new TaskAbortException("Page %s already exists.", compoDir);

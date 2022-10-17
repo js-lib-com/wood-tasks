@@ -56,7 +56,7 @@ public class ExportComponent extends WoodTask {
 		String compoPath = parameters.get("component-path");
 		log.info("Export component %s.", compoPath);
 
-		Path workingDir = files.getProjectDir();
+		Path workingDir = getProjectDir(files);
 		Path compoDir = workingDir.resolve(compoPath);
 		if (!files.exists(compoDir)) {
 			throw new TaskAbortException("Missing component directory %s.", compoDir);

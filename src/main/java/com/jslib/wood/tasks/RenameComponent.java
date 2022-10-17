@@ -19,7 +19,6 @@ public class RenameComponent extends WoodTask {
 	private static final Log log = LogFactory.getLog(RenameComponent.class);
 
 	private final IFiles files;
-	private final Path projectDir;
 	private final TextReplace textReplace;
 
 	@Inject
@@ -27,7 +26,6 @@ public class RenameComponent extends WoodTask {
 		super();
 		log.trace("RenameComponent()");
 		this.files = files;
-		this.projectDir = files.getProjectDir();
 		this.textReplace = new TextReplace();
 	}
 
@@ -46,6 +44,7 @@ public class RenameComponent extends WoodTask {
 		String name = parameters.get("compo-name", String.class);
 		String newname = parameters.get("new-name");
 
+		Path projectDir = getProjectDir(files);
 		Path compoDir = projectDir.resolve(name);
 		if (!files.exists(compoDir)) {
 			throw new TaskAbortException("Missing component directory %s.", compoDir);

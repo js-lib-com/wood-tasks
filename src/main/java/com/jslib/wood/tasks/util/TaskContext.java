@@ -27,9 +27,8 @@ import com.jslib.util.Strings;
 public class TaskContext {
 	private static final Log log = LogFactory.getLog(TaskContext.class);
 
-	private static final String USER_PROPERTIES_FILE = ".wood.properties";
-	private static final String PROJECT_PROPERTIES_FILE = ".project.properties";
-	private static final String PROJECT_DESCRIPTOR_FILE = "project.xml";
+	private static final String PROPERTIES_FILE = ".wood.properties";
+	private static final String DESCRIPTOR_FILE = "project.xml";
 
 	private final Converter converter = ConverterRegistry.getConverter();
 	private static final DocumentBuilder builder = Classes.loadService(DocumentBuilder.class);
@@ -40,7 +39,7 @@ public class TaskContext {
 	public TaskContext() {
 		Path workingDir = Paths.get("").toAbsolutePath();
 
-		Path projectDescriptorFile = workingDir.resolve(PROJECT_DESCRIPTOR_FILE);
+		Path projectDescriptorFile = workingDir.resolve(DESCRIPTOR_FILE);
 		if (Files.exists(projectDescriptorFile)) {
 			try (Reader reader = Files.newBufferedReader(projectDescriptorFile)) {
 				Document doc = builder.loadXML(reader);
@@ -61,7 +60,7 @@ public class TaskContext {
 
 		Path userDir = Paths.get(System.getProperty("user.home"));
 		if (Files.exists(userDir)) {
-			Path userPropertiesFile = userDir.resolve(USER_PROPERTIES_FILE);
+			Path userPropertiesFile = userDir.resolve(PROPERTIES_FILE);
 			if (Files.exists(userPropertiesFile)) {
 				try (Reader reader = Files.newBufferedReader(userPropertiesFile)) {
 					properties.load(reader);
@@ -72,7 +71,7 @@ public class TaskContext {
 			}
 		}
 
-		this.projectPropertiesFile = workingDir.resolve(PROJECT_PROPERTIES_FILE);
+		this.projectPropertiesFile = workingDir.resolve(PROPERTIES_FILE);
 		if (Files.exists(projectPropertiesFile)) {
 			try (Reader reader = Files.newBufferedReader(projectPropertiesFile)) {
 				properties.load(reader);

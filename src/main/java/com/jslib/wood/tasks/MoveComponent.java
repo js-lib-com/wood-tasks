@@ -49,7 +49,7 @@ public class MoveComponent extends WoodTask {
 		String compoPath = parameters.get("component-path");
 		String targetPath = parameters.get("target-path");
 
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 		Path compoDir = projectDir.resolve(compoPath);
 		if (!files.exists(compoDir)) {
 			throw new TaskAbortException("Missing component directory %s.", compoDir);

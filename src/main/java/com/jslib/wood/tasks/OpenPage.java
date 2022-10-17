@@ -47,7 +47,7 @@ public class OpenPage extends WoodTask {
 	public ReturnCode execute(IParameters parameters) throws IOException, TaskAbortException {
 		log.trace("execute()");
 
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 		String projectName = files.getFileName(projectDir);
 
 		String pageName = parameters.get("page-name", String.class);

@@ -43,7 +43,7 @@ public class PreviewComponent extends WoodTask {
 
 		String compoName = parameters.get("compo-name", String.class);
 
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 		Path compoDir = projectDir.resolve(compoName);
 		if (!files.exists(compoDir)) {
 			throw new TaskAbortException("Missing component directory %s.", compoDir);

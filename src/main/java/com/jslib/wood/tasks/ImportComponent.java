@@ -95,7 +95,7 @@ public class ImportComponent extends WoodTask {
 
 		log.info("Import %s.", compoCoordinates);
 
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 		Path projectCompoDir = projectCompoDir(compoCoordinates);
 		if (projectCompoDir != null) {
 			log.info("Component %s already loaded on %s.", compoCoordinates, compoPath(projectCompoDir));
@@ -191,7 +191,7 @@ public class ImportComponent extends WoodTask {
 	void updateLayoutOperators(Path layoutFile, String operatorsNaming) throws IOException {
 		boolean hasNamespace = "XMLNS".equals(operatorsNaming);
 		String prefix = "DATA_ATTR".equals(operatorsNaming) ? "data-" : "";
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 
 		try {
 			Document document = documentBuilder.loadXMLNS(files.getReader(layoutFile));
@@ -229,7 +229,7 @@ public class ImportComponent extends WoodTask {
 	}
 
 	String compoPath(Path compoDir) {
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 		return projectDir.relativize(compoDir).toString().replace('\\', '/');
 	}
 
@@ -244,7 +244,7 @@ public class ImportComponent extends WoodTask {
 		}
 		final Component component = new Component();
 
-		files.walkFileTree(files.getProjectDir(), new SimpleFileVisitor<Path>() {
+		files.walkFileTree(getProjectDir(files), new SimpleFileVisitor<Path>() {
 			@Override
 			public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
 				Path descriptorFile = dir.resolve(files.getFileName(dir) + ".xml");
@@ -414,7 +414,7 @@ public class ImportComponent extends WoodTask {
 		}
 
 		private String src(Path scriptFile) {
-			return files.getProjectDir().relativize(scriptFile).toString().replace('\\', '/');
+			return files.getWorkingDir().relativize(scriptFile).toString().replace('\\', '/');
 		}
 
 		public RepositoryCoordinates getCoordinates() {

@@ -20,13 +20,13 @@ import com.jslib.wood.tasks.util.VariableReference;
 public class RenameVariable extends WoodTask {
 	private static final Log log = LogFactory.getLog(RenameVariable.class);
 
-	private IFiles files;
-	private TextReplace textReplace = new TextReplace();
+	private final IFiles files;
+	private final TextReplace textReplace = new TextReplace();
 
 	@Inject
 	protected RenameVariable(IFiles files) {
 		super();
-		log.trace("RenameVariable(files)");
+		log.trace("RenameVariable(Files)");
 		this.files = files;
 	}
 
@@ -43,7 +43,7 @@ public class RenameVariable extends WoodTask {
 	public ReturnCode execute(IParameters parameters) throws Exception {
 		log.trace("execute(parameters)");
 
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 		VariableReference reference = parameters.get("reference", VariableReference.class);
 		String newname = parameters.get("new-name");
 

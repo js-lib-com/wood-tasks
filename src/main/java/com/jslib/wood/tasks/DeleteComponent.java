@@ -44,7 +44,7 @@ public class DeleteComponent extends WoodTask {
 
 		String name = parameters.get("name", String.class);
 
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 		Path compoDir = projectDir.resolve(name);
 		if (!files.exists(compoDir)) {
 			throw new TaskAbortException("Missing component directory %s.", compoDir);

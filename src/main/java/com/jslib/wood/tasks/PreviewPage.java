@@ -49,7 +49,7 @@ public class PreviewPage extends WoodTask {
 	public ReturnCode execute(IParameters parameters) throws Exception {
 		log.trace("execute()");
 
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 
 		String pageName = parameters.get("page-name", String.class);
 		Path compoDir = pageName.contains("/") ? projectDir.relativize(projectDir.resolve(pageName)) : compos.findCompoByPageName(pageName);

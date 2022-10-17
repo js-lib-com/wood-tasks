@@ -42,7 +42,7 @@ public class ListComponentUsage extends WoodTask {
 		String compoPath = parameters.get("component-path");
 		log.info("List component usage for %s.", compoPath);
 
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 
 		List<Path> usedByFiles = files.findFilesByContentPattern(projectDir, ".htm", compoPath);
 		if (usedByFiles.isEmpty()) {

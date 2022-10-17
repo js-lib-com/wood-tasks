@@ -50,7 +50,7 @@ public class DeployProject extends WoodTask {
 	public ReturnCode execute(IParameters parameters) throws Exception {
 		log.trace("execute(parameters)");
 
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 		Path buildPath = projectDir.resolve(context.getex("build.dir"));
 		if (!files.exists(buildPath)) {
 			throw new TaskAbortException("Missing build directory %s.", buildPath);

@@ -59,7 +59,7 @@ public class CreateIcons extends WoodTask {
 	@Override
 	public ReturnCode execute(IParameters parameters) throws Exception {
 		log.trace("execute(parameters)");
-		Path projectDir = files.getProjectDir();
+		Path projectDir = getProjectDir(files);
 		String projectName = files.getFileName(projectDir);
 
 		Path assetDir = projectDir.resolve(context.getex("asset.dir"));

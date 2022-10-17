@@ -45,7 +45,7 @@ public abstract class BaseListComponents extends WoodTask {
 	public ReturnCode execute(IParameters parameters) throws Exception {
 		log.trace("execute(parameters)");
 
-		Path workingDir = files.getProjectDir();
+		Path workingDir = getProjectDir(files);
 		IPrintout printout = shell.getPrintout();
 		DisplayMode displayMode = parameters.get("display-mode", DisplayMode.class);
 
