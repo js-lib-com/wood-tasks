@@ -22,6 +22,7 @@ import com.jslib.tools.imagick.Color;
 import com.jslib.tools.imagick.ConvertProcess;
 import com.jslib.util.Classes;
 import com.jslib.util.Strings;
+import com.jslib.wood.tasks.util.TaskContext;
 
 public class CreateIcons extends WoodTask {
 	private static final Log log = LogFactory.getLog(CreateIcons.class);
@@ -41,6 +42,15 @@ public class CreateIcons extends WoodTask {
 		this.files = files;
 		this.json = Classes.loadService(Json.class);
 		this.convert = new ConvertProcess();
+	}
+
+	CreateIcons(TaskContext context, IShell shell, IFiles files, Json json, ConvertProcess convert) {
+		super(context);
+		log.trace("CreateIcons(files)");
+		this.console = shell.getConsole();
+		this.files = files;
+		this.json = json;
+		this.convert = convert;
 	}
 
 	@Override
@@ -103,7 +113,8 @@ public class CreateIcons extends WoodTask {
 		files.delete(backgroundFile);
 		files.delete(textFile);
 
-		for (int variant : variants(projectDir)) {
+		int[] variants = variants(projectDir);
+		for (int variant : variants) {
 			log.info("Create icon variant %d.", variant);
 			Path icon = assetDir.resolve(format("app-icon-%d.png", variant));
 			String w = Integer.toString(variant);
@@ -118,13 +129,32 @@ public class CreateIcons extends WoodTask {
 		imagick("${source} -brightness-contrast -30x-40 ${target}", backgroundFile, backgroundFile);
 
 		Path iconFile = assetDir.resolve("app-icon-256.png");
+		if (!files.exists(iconFile)) {
+			imagick("${imageFile} -resize 256x256 ${targetFile}", baseIcon, iconFile);
+		}
 		Path featuredFile = assetDir.resolve("app-featured.png");
 		// offset +122 is adjusted for icon size of 256: (500 - 256) / 2
 		imagick("-composite -compose atop -geometry +122+122 ${background} ${icon} ${featured}", backgroundFile, iconFile, featuredFile);
 
+		// remove files created for internal use if are not in requested variants 
+		if (!isVariant(variants, 512)) {
+			files.delete(assetDir.resolve("app-icon-512.png"));
+		}
+		if (!isVariant(variants, 256)) {
+			files.delete(assetDir.resolve("app-icon-256.png"));
+		}
 		files.delete(backgroundFile);
 
 		return ReturnCode.SUCCESS;
+	}
+
+	private static boolean isVariant(int[] variants, int variant) {
+		for (int i = 0; i < variants.length; ++i) {
+			if (variants[i] == variant) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private static class Icon {
@@ -136,11 +166,15 @@ public class CreateIcons extends WoodTask {
 	}
 
 	private int[] variants(Path projectDir) throws IOException, TaskAbortException {
-		log.debug("project.manifest: %s", context.getex("project.manifest"));
-		if (!context.has("project.manifest")) {
+		log.debug("manifest: %s", context.get("manifest"));
+		if (!context.has("manifest")) {
 			return ICON_VARIANTS;
 		}
-		Path manifestFile = projectDir.resolve(context.getex("project.manifest"));
+
+		Path manifestFile = projectDir.resolve(context.get("manifest"));
+		if (!files.exists(manifestFile)) {
+			return ICON_VARIANTS;
+		}
 
 		Manifest manifest = json.parse(files.getReader(manifestFile), Manifest.class);
 
@@ -172,7 +206,7 @@ public class CreateIcons extends WoodTask {
 
 	// --------------------------------------------------------------------------------------------
 
-	private void imagick(String command, Object... args) throws IOException, TaskAbortException {
+	void imagick(String command, Object... args) throws IOException, TaskAbortException {
 		imagick(null, command, args);
 	}
 

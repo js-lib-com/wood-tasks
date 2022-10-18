@@ -57,6 +57,15 @@ public class TaskContext {
 		if(!properties.containsKey("build.dir")) {
 			properties.put("build.dir", CT.DEF_BUILD_DIR);
 		}
+		if(!properties.containsKey("favicon")) {
+			properties.put("favicon", CT.DEF_FAVICON_FILE);
+		}
+		if(!properties.containsKey("manifest")) {
+			properties.put("manifest", CT.DEF_MANIFEST_FILE);
+		}
+		if(!properties.containsKey("service-worker")) {
+			properties.put("service-worker", CT.DEF_SERVICE_WORKER_FILE);
+		}
 		
 		Path userDir = Paths.get(System.getProperty("user.home"));
 		if (Files.exists(userDir)) {
