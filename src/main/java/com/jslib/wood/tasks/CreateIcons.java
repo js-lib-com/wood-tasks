@@ -136,7 +136,7 @@ public class CreateIcons extends WoodTask {
 		// offset +122 is adjusted for icon size of 256: (500 - 256) / 2
 		imagick("-composite -compose atop -geometry +122+122 ${background} ${icon} ${featured}", backgroundFile, iconFile, featuredFile);
 
-		// remove files created for internal use if are not in requested variants 
+		// remove files created for internal use if are not in requested variants
 		if (!isVariant(variants, 512)) {
 			files.delete(assetDir.resolve("app-icon-512.png"));
 		}
@@ -166,12 +166,13 @@ public class CreateIcons extends WoodTask {
 	}
 
 	private int[] variants(Path projectDir) throws IOException, TaskAbortException {
-		log.debug("manifest: %s", context.get("manifest"));
-		if (!context.has("manifest")) {
+		String manifestPath = context.get("pwa.manifest");
+		log.debug("pwa.manifest: %s", manifestPath);
+		if (manifestPath == null) {
 			return ICON_VARIANTS;
 		}
 
-		Path manifestFile = projectDir.resolve(context.get("manifest"));
+		Path manifestFile = projectDir.resolve(manifestPath);
 		if (!files.exists(manifestFile)) {
 			return ICON_VARIANTS;
 		}

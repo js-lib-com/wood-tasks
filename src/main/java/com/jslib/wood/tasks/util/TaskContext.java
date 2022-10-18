@@ -6,7 +6,9 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.jslib.api.dom.Document;
@@ -27,14 +29,25 @@ public class TaskContext {
 	private static final String PROPERTIES_FILE = ".wood.properties";
 	private static final String DESCRIPTOR_FILE = "project.xml";
 
+	private static final Map<String, String> DESCRIPTOR_DEFAULTS = new HashMap<>();
+	static {
+		DESCRIPTOR_DEFAULTS.put("asset.dir", CT.DEF_ASSET_DIR);
+		DESCRIPTOR_DEFAULTS.put("theme.dir", CT.DEF_THEME_DIR);
+		DESCRIPTOR_DEFAULTS.put("build.dir", CT.DEF_BUILD_DIR);
+		DESCRIPTOR_DEFAULTS.put("favicon", CT.DEF_FAVICON_FILE);
+		DESCRIPTOR_DEFAULTS.put("pwa.manifest", CT.DEF_PWA_MANIFEST_FILE);
+		DESCRIPTOR_DEFAULTS.put("pwa.worker", CT.DEF_PWA_WORKER_FILE);
+	}
+
 	private final Converter converter = ConverterRegistry.getConverter();
 	private static final DocumentBuilder builder = Classes.loadService(DocumentBuilder.class);
 
 	private final Path projectPropertiesFile;
-	private final Properties properties = new Properties();
+	private final Properties properties;
 
 	public TaskContext() {
 		Path workingDir = Paths.get("").toAbsolutePath();
+		properties = new Properties();
 
 		Path projectDescriptorFile = workingDir.resolve(DESCRIPTOR_FILE);
 		if (Files.exists(projectDescriptorFile)) {
@@ -47,26 +60,13 @@ public class TaskContext {
 				log.error(e);
 			}
 		}
-		
-		if(!properties.containsKey("asset.dir")) {
-			properties.put("asset.dir", CT.DEF_ASSET_DIR);
+
+		for (Map.Entry<String, String> entry : DESCRIPTOR_DEFAULTS.entrySet()) {
+			if (!properties.containsKey(entry.getKey())) {
+				properties.put(entry.getKey(), entry.getValue());
+			}
 		}
-		if(!properties.containsKey("theme.dir")) {
-			properties.put("theme.dir", CT.DEF_THEME_DIR);
-		}
-		if(!properties.containsKey("build.dir")) {
-			properties.put("build.dir", CT.DEF_BUILD_DIR);
-		}
-		if(!properties.containsKey("favicon")) {
-			properties.put("favicon", CT.DEF_FAVICON_FILE);
-		}
-		if(!properties.containsKey("manifest")) {
-			properties.put("manifest", CT.DEF_MANIFEST_FILE);
-		}
-		if(!properties.containsKey("service-worker")) {
-			properties.put("service-worker", CT.DEF_SERVICE_WORKER_FILE);
-		}
-		
+
 		Path userDir = Paths.get(System.getProperty("user.home"));
 		if (Files.exists(userDir)) {
 			Path userPropertiesFile = userDir.resolve(PROPERTIES_FILE);
