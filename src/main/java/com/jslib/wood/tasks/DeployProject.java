@@ -47,7 +47,7 @@ public class DeployProject extends WoodTask {
 	}
 
 	@Override
-	public ReturnCode execute(IParameters parameters) throws Exception {
+	public ReturnCode execute(IParameters parameters) throws Throwable {
 		log.trace("execute(parameters)");
 
 		Path projectDir = getProjectDir(files);

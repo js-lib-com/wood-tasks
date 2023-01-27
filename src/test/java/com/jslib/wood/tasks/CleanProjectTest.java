@@ -40,7 +40,7 @@ public class CleanProjectTest {
 	}
 
 	@Test
-	public void GivenContextProvided_WhenExecute_ThenCleanDirectory() throws Exception {
+	public void GivenContextProvided_WhenExecute_ThenCleanDirectory() throws Throwable {
 		// given
 		when(context.getex("build.dir")).thenReturn("build");
 
@@ -52,7 +52,7 @@ public class CleanProjectTest {
 	}
 
 	@Test
-	public void GivenContextNotProvided_WhenExecute_ThenNotCleanDirectory() throws Exception {
+	public void GivenContextNotProvided_WhenExecute_ThenNotCleanDirectory() throws Throwable {
 		// given
 
 		// when
@@ -66,7 +66,7 @@ public class CleanProjectTest {
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void GivenContextNotProvided_WhenExecute_ThenException() throws Exception {
+	public void GivenContextNotProvided_WhenExecute_ThenException() throws Throwable {
 		// given
 
 		// when
