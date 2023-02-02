@@ -30,11 +30,13 @@ public class TasksProvider implements ITasksProvider {
 
 	@Override
 	public List<Class<? extends ITask>> getTasksList() {
+		log.trace("getTasksList()");
 		List<Class<? extends ITask>> list = new ArrayList<>();
 
 		list.add(BindRuntime.class);
 		list.add(BuildProject.class);
 		list.add(CleanProject.class);
+		list.add(CreateFavicon.class);
 		list.add(CreateIcons.class);
 		list.add(CreatePage.class);
 		list.add(DeleteComponent.class);
@@ -68,7 +70,7 @@ public class TasksProvider implements ITasksProvider {
 
 	@Override
 	public Map<String, TaskReference> getTaskReferences() {
-		log.trace("getTasks()");
+		log.trace("getTaskReferences()");
 		return Repository.TASKS;
 	}
 

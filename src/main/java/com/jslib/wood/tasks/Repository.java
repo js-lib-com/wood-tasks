@@ -11,6 +11,7 @@ public class Repository {
 		TASKS.put("bind runtime", new TaskReference(BindRuntime.class, true));
 		TASKS.put("build project", new TaskReference(BuildProject.class, true));
 		TASKS.put("clean project", new TaskReference(CleanProject.class, true));
+		TASKS.put("create favicon", new TaskReference(CreateFavicon.class, true));
 		TASKS.put("create icons", new TaskReference(CreateIcons.class, true));
 		TASKS.put("create page", new TaskReference(CreatePage.class, true));
 		TASKS.put("delete compo", new TaskReference(DeleteComponent.class, true));
